@@ -6,6 +6,7 @@
 
 body {
     height: 100vh;
+    position: relative;
 }
 
 .background {
@@ -13,7 +14,9 @@ body {
     height: 100%;
     background-image: url("/assets/SCENE02\ -\ STATIQUE.png");
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    position: relative;
 }
 
 .character {
@@ -26,20 +29,22 @@ body {
     bottom: 110px;
     right: 1200px;
     background-repeat: no-repeat;
+    transition: transform 0.1s linear;
+    /* Переход по свойству transform с длительностью 0,1 секунды и линейным типом анимации (равномерная скорость на протяжении всей трансформации) */
 }
 
 .hud {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    position: absolute;
+    top: 20px;
+    left: 20px;
     align-items: center;
 }
 
 .profile {
     background-image: url(/assets/Group\ 19.png);
     background-size: contain;
-    /* background-position-y: top;
-    background-position-x: left; */
     width: 120px;
     height: 120px;
     background-repeat: no-repeat;
@@ -48,9 +53,18 @@ body {
 .health {
     background-image: url(/assets/icon_vie.png);
     background-size: contain;
-    /* background-position-y: top;
-    background-position-x: left; */
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-repeat: no-repeat;
+    transition: width 0.3s ease-in-out;
+    margin-bottom: 20px;
+    /* Анимания начинается медленно, ускоряется в середине, завершается медленно */
+}
+
+.healthbar {
+    width: 150px;
+    height: 20px;
+    background-color: red;
+    border: 2px black solid;
+    position: relative;
 }

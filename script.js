@@ -1,4 +1,6 @@
 const character = document.getElementById("character");
+const healthbar = document.querySelector(".healthbar");
+const background = document.querySelector(".background");
 
 // const getCharacterPosition = () => {
 //     return parseInt(window.getComputedStyle(character).right, 10) 
@@ -10,6 +12,12 @@ const character = document.getElementById("character");
 
 // console.log(currentPosition);
 let isJumping = false;
+let health = 100;
+// начальный уровень HP
+let direction = "right";
+// начальное направление персонажа
+let backgroundPositionX = 0;
+// смещение основного фона
 
 window.addEventListener("keydown", function(event) { 
     // присвоение значений переменной
@@ -18,8 +26,18 @@ window.addEventListener("keydown", function(event) {
 
     if(event.key === "ArrowLeft") {
         currentPositionX += 10;
+        backgroundPositionX += 10;
+        if (direction !== "left") {
+            character.style.transform = "scaleX(-1)";
+            direction = "left";
+        }
     } else if(event.key === "ArrowRight") {
         currentPositionX -= 10;
+        backgroundPositionX -= 10;
+        if (direction !== "right") {
+            character.style.transform = "scaleX(1)";
+            direction = "right";
+        }
     } else if(event.key === "ArrowUp" && !isJumping) {
         isJumping = true;
         currentPositionY += 100;
@@ -31,12 +49,17 @@ window.addEventListener("keydown", function(event) {
 
             setTimeout(function() {
                 isJumping = false;
-            }, 150)
-        }, 150)
+            }, 150);
+        }, 150);
+    } else if (event.key === " ") {
+        health -= 10;
+        if (health < 0) health = 0;
+        healthbar.style.width = health + "%";
     }
 
     character.style.right = currentPositionX + "px";
-})
+    background.style.backgroundPosition = `${backgroundPositionX}px 0`;
+});
 
 
 // // 1. Сделать отображение худа (ХП бар);
