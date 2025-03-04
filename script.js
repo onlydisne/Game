@@ -18,6 +18,7 @@ let direction = "right";
 // начальное направление персонажа
 let backgroundPositionX = 0;
 // смещение основного фона
+const backgroundSpeed = 5; // Скорость фона
 
 window.addEventListener("keydown", function(event) { 
     // присвоение значений переменной
@@ -54,9 +55,13 @@ window.addEventListener("keydown", function(event) {
     } else if (event.key === " ") {
         health -= 10;
         if (health < 0) health = 0;
-        healthbar.style.width = health + "%";
+        document.querySelector(".healthbar").style.width = health + "%";
     }
-
+    if (backgroundPositionX <= -1920) {
+        backgroundPositionX = 0;
+    else if (backgroundPositionX >= 1920) {
+        backgroundPositionX = 0;
+    }
     character.style.right = currentPositionX + "px";
     background.style.backgroundPosition = `${backgroundPositionX}px 0`;
 });
