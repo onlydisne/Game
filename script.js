@@ -54,6 +54,7 @@ window.addEventListener("keydown", function(event) {
 // если фон уходит слишком далеко влево, то сбрасываем его
     if (backgroundPositionX <= -1920) {
         backgroundPositionX = 0;
+    }
 // если фон уходит слишком далеко вправо, то сбрасываем его
     else if (backgroundPositionX >= 1920) {
         backgroundPositionX = 0;
